@@ -7,7 +7,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('Mastoura-aws-secret-access-key')
 
         AWS_S3_BUCKET = "mastoura-belt2d2-artifacts-123456"
-        ARTIFACT_NAME = "hello-world.war"
+        ARTIFACT_NAME = "hello-world.jar"
         AWS_EB_APP_NAME = "mastoura-exam"
         AWS_EB_APP_VERSION = "${BUILD_ID}"
         AWS_EB_ENVIRONMENT = "Mastouraexam-env"
@@ -46,6 +46,7 @@ pipeline {
             post {
                 always {
                     junit '**/target/surefire-reports/TEST-*.xml'
+                    
                 }
             }
         }
