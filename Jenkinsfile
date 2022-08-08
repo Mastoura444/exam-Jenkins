@@ -7,7 +7,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('Mastoura-aws-secret-access-key')
 
         AWS_S3_BUCKET = "mastoura-belt2d2-artifacts-123456"
-        ARTIFACT_NAME = "spring-boot-rest-services-0.0.1-SNAPSHOT.jar"
+        ARTIFACT_NAME = "Hello-word.war"
         AWS_EB_APP_NAME = "mastoura-exam"
         AWS_EB_APP_VERSION = "${BUILD_ID}"
         AWS_EB_ENVIRONMENT = "Mastouraexam-env"
@@ -71,7 +71,7 @@ pipeline {
 
             post {
                 success {
-                    archiveArtifacts artifacts: '**/target/**.jar', followSymlinks: false
+                    archiveArtifacts artifacts: '**/target/**.war', followSymlinks: false
 
                    
                 }
@@ -83,7 +83,7 @@ pipeline {
 
                 sh "aws configure set region us-east-1"
 
-                sh "aws s3 cp ./target/**.jar s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
+                sh "aws s3 cp ./target/**.war s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
                 
             }
         }
