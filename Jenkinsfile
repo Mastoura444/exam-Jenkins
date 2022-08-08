@@ -6,7 +6,7 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('Mastoura-aws-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('Mastoura-aws-secret-access-key')
 
-        AWS_S3_BUCKET = "mastoura-belt2d2-artifacts-123456"
+        AWS_S3_BUCKET = "mastoura-belt2d2-artifacts-12345"
         ARTIFACT_NAME = "Hello-world.jar"
         AWS_EB_APP_NAME = "mastoura-exam"
         AWS_EB_APP_VERSION = "${BUILD_ID}"
@@ -94,12 +94,9 @@ pipeline {
                 sh 'aws elasticbeanstalk create-application-version --application-name $AWS_EB_APP_NAME --version-label $AWS_EB_APP_VERSION --source-bundle S3Bucket=$AWS_S3_BUCKET,S3Key=$ARTIFACT_NAME'
 
                 sh 'aws elasticbeanstalk update-environment --application-name $AWS_EB_APP_NAME --environment-name $AWS_EB_ENVIRONMENT --version-label $AWS_EB_APP_VERSION'
-            
                 
             }
         }
-
-        
         
     }
 }
